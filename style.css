@@ -2,12 +2,14 @@ span {
     background-color: inherit;
     font-kerning: auto;
     font-family: 'Source Sans 3', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-weight: normal;
     color: white;
     font-size: medium;
 }
 
 .monospace {
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-weight: normal;    
 }
 
 .large {
