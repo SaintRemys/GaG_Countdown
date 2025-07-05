@@ -1,10 +1,17 @@
 span {
     background-color: inherit;
     font-kerning: auto;
+    font-family: 'Source Sans 3', 'Segoe UI', Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: medium;
 }
 
 .monospace {
-    font-family: 'JetBrains Mono', Courier, monospace;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+.large {
+    font-size: larger;
 }
 
 .container {
@@ -16,6 +23,14 @@ span {
     width: 100%;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.c-top {
+    align-items: top;
+}
+
+.transparent {
+    background-color: transparent;
 }
 
 .blackContainer {
