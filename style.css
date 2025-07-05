@@ -1,14 +1,36 @@
+span {
+    background-color: inherit;
+    font-kerning: auto;
+}
+
+.monospace {
+    font-family: 'JetBrains Mono', Courier, monospace;
+}
+
 .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        width: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.blackContainer {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px 4px 4px 4px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    background-image: url("/Assets/Background.png");
+    background-image: url("./Assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
