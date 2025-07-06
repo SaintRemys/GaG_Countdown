@@ -1,26 +1,35 @@
 window.addEventListener('load', async function () {
 
-  function updatePlayerCount(number) {
-  const digitsOnly = number.toString().padStart(8, '0');
-  const digitWrappers = document.querySelectorAll('#playerCount .digit-wrapper');
-
-  digitsOnly.split('').forEach((digit, i) => {
-    const wrapper = digitWrappers[i];
-    const offset = parseInt(digit) * -2.5;
-    wrapper.style.transform = `translateY(${offset}rem)`;
-
-    if (i === 0) {
-      const outerDigitSpan = wrapper.parentElement;
-      if (digit === '0') {
-        outerDigitSpan.style.display = 'none';
-      } else {
-        outerDigitSpan.style.display = '';
-      }
+      function updatePlayerCount(number) {
+      const digitsOnly = number.toString().padStart(8, '0');
+      const digitWrappers = document.querySelectorAll('#playerCount .digit-wrapper');
+  
+      digitsOnly.split('').forEach((digit, i) => {
+        const wrapper = digitWrappers[i];
+        const offset = parseInt(digit) * -2.5;
+        wrapper.style.transform = `translateY(${offset}rem)`;
+    
+        if (i === 0) {
+          const outerDigitSpan = wrapper.parentElement;
+          if (digit === '0') {
+            outerDigitSpan.style.display = 'none';
+          } else {
+            outerDigitSpan.style.display = '';
+          }
+        }
+      });
     }
-  });
-}
 
+    const possibleTimerTQuotes = [
+      "Time left of functional Roblox Servers:",
+      "Time left of Roblox online:",
+      "Time left until disaster strikes:",
+      "Time left until Grow a Garden updates:",
+      "Time left until Roblox dies:"
+    ];
 
+    const randomQuote = possibleTimerTQuotes[Math.floor(Math.random() * possibleTimerTQuotes.length)];
+  
     async function getPlayerCount() {
         const experienceId = "7436755782";
         const url = `https://games.roproxy.com/v1/games?universeIds=${experienceId}`;
@@ -68,6 +77,8 @@ window.addEventListener('load', async function () {
             `${String(s).padStart(2, '0')}`;
     }
 
+    document.getElementById("timerTitle").innerHTML = randomQuote
+  
     setInterval(updateCountdown, 1000);
     setInterval(getPlayerCount, 10000);
     updateCountdown();
