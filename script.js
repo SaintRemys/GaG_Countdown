@@ -1,4 +1,6 @@
 window.addEventListener('load', async function () {
+  let playerCount = 0;
+  
   const sheet = document.styleSheets[0]; // First stylesheet
   const experienceId = "7436755782";
   const url = `https://games.roproxy.com/v1/games?universeIds=${experienceId}`;
@@ -49,26 +51,29 @@ window.addEventListener('load', async function () {
     }
   }
 
-  async function getPlayerCount() {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      const count = data.data[0]?.playing ?? 0;
-      if (lastPlayerCount != 0) {
-        increment = count - lastPlayerCount
-      }
-      lastPlayerCount = count
-      updatePlayerCount(count);
-      odometerColor(0);
-    } catch (error) {
-      updatePlayerCount(lastPlayerCount + increment);
-      lastPlayerCount += increment
-      odometerColor(1);
+ async function getPlayerCount() {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const data = await response.json();
+    const count = data.data[0]?.playing ?? 0;
+    if (lastPlayerCount != 0) {
+      increment = count - lastPlayerCount;
+    }
+    lastPlayerCount = count;
+    updatePlayerCount(count);
+    odometerColor(0);
+    playerCount = count;
+  } catch (error) {
+    const fallbackCount = lastPlayerCount + increment;
+    updatePlayerCount(fallbackCount);
+    lastPlayerCount += increment;
+    odometerColor(1);
+    playerCount = fallbackCount;
   }
+}
 
   function updateCountdown() {
     const now = new Date();
