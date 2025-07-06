@@ -34,7 +34,7 @@ window.addEventListener('load', async function () {
             const count = data.data[0]?.playing ?? 0;
             updatePlayerCount(count);
         } catch (error) {
-            document.getElementById("playerCount").textContent = `ERR: Broken :(`;
+            document.getElementById("playerCount").textContent = `Unknown Error Occurred`;
         }
     }
 
