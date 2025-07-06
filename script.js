@@ -1,6 +1,6 @@
  window.addEventListener('load', async function () {
   let playerCount = 0;
-  let playerRecord = 21334520;
+  let playerRecord = 2;
   
   const sheet = document.styleSheets[0]; // First stylesheet
   const experienceId = "7436755782";
@@ -67,12 +67,23 @@
     updatePlayerCount(count);
     odometerColor(0);
     playerCount = count;
+   
+    if (playerCount > playerRecord) {
+     playerRecord = playerCount;
+     document.getElementById("prCount").textContent = `${playerCount.toLocaleString()} Players`;
+    }
+   
   } catch (error) {
     const fallbackCount = lastPlayerCount + increment;
     updatePlayerCount(fallbackCount);
     lastPlayerCount += increment;
     odometerColor(1);
     playerCount = fallbackCount;
+   
+    if (playerCount > playerRecord) {
+     playerRecord = playerCount;
+     document.getElementById("prCount").textContent = `${playerCount.toLocaleString()} Players`;
+    }
   }
 }
 
