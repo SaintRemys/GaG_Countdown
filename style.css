@@ -9,7 +9,8 @@ span {
 
 .monospace {
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
-    font-weight: normal;    
+    font-weight: normal;
+    color: white;    
 }
 
 .large {
@@ -37,7 +38,8 @@ span {
 
 .blackContainer {
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 4px 4px 4px 4px;
+    padding: 4px;
+    margin: 5px;
 }
 
 html, body {
@@ -50,4 +52,38 @@ body {
     background-image: url("./Assets/Background.png");
     background-size: cover;
     background-repeat: no-repeat;
+}
+.odometer-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1em;
+}
+
+.odometer-player .digit {
+    height: 2.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.odometer-player .digit-wrapper {
+    display: flex;
+    flex-direction: column;
+    transition: transform 1s ease-in-out;
+    user-select: none;
+}
+
+.odometer-player .digit-wrapper span {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.odometer-player .comma {
+    width: 0.5ch;
+    user-select: none;
+    color: #FFFFFF;
+    line-height: 2.5rem;
+    text-align: center;
+    padding-right: 2px;
 }
