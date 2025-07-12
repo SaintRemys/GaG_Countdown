@@ -1,6 +1,6 @@
  window.addEventListener('load', async function () {
   let playerCount = 0;
-  let playerRecord = parseInt(localStorage.getItem("playerRecord")) || 21334520;
+  let playerRecord = parseInt(localStorage.getItem("playerRecord")) || 0;
   
   const sheet = document.styleSheets[0]; // First stylesheet
   const experienceId = "7436755782";
