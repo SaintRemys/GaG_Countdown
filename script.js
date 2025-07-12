@@ -68,10 +68,11 @@
     odometerColor(0);
     playerCount = count;
    
-    if (playerCount > playerRecord) {
+   if (playerCount > playerRecord) {
      playerRecord = playerCount;
+     localStorage.setItem("playerRecord", playerRecord.toString());
      document.getElementById("prCount").textContent = `${playerCount.toLocaleString()} Players`;
-    }
+   }
    
   } catch (error) {
     const fallbackCount = lastPlayerCount + increment;
@@ -81,8 +82,9 @@
     playerCount = fallbackCount;
    
     if (playerCount > playerRecord) {
-     playerRecord = playerCount;
-     document.getElementById("prCount").textContent = `${playerCount.toLocaleString()} Players`;
+      playerRecord = playerCount;
+      localStorage.setItem("playerRecord", playerRecord.toString());
+      document.getElementById("prCount").textContent = `${playerCount.toLocaleString()} Players`;
     }
   }
 }
