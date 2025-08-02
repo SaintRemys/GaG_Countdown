@@ -48,25 +48,32 @@ window.addEventListener('load', async function () {
     }
   }
 
- function timeAgo(timestamp) {
+function timeAgo(timestamp) {
   const now = Date.now();
   let diff = Math.floor((now - timestamp) / 1000);
 
-  const timeUnits = [
-    { label: 'week', value: Math.floor(diff / 604800) },
-    { label: 'day', value: Math.floor((diff % 604800) / 86400) },
-    { label: 'hour', value: Math.floor((diff % 86400) / 3600) },
-    { label: 'minute', value: Math.floor((diff % 3600) / 60) },
-    { label: 'second', value: diff % 60 }
+  const units = [
+    { label: 'week', seconds: 604800 },
+    { label: 'day', seconds: 86400 },
+    { label: 'hour', seconds: 3600 },
+    { label: 'minute', seconds: 60 },
+    { label: 'second', seconds: 1 }
   ];
 
-  const parts = timeUnits
-    .filter(unit => unit.value > 0)
-    .slice(0, 3)
-    .map(unit => `${unit.value} ${unit.label}${unit.value !== 1 ? 's' : ''}`);
+  const parts = [];
+
+  for (let unit of units) {
+    const value = Math.floor(diff / unit.seconds);
+    if (value > 0) {
+      parts.push(`${value} ${unit.label}${value !== 1 ? 's' : ''}`);
+      diff %= unit.seconds;
+    }
+    if (parts.length === 3) break;
+  }
 
   return (parts.length ? parts.join(', ') : '0 seconds') + ' ago';
 }
+
 
   let lastPlayerCount = 0;
   let increment = 0;
@@ -151,5 +158,6 @@ window.addEventListener('load', async function () {
   setInterval(updateCountdown, 200);
   updateCountdown();
 });
+
 
 
