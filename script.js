@@ -2,6 +2,11 @@ window.addEventListener('load', async function () {
   let playerCount = 0;
   let playerRecord = parseInt(localStorage.getItem("playerRecord")) || 21461453;
   let playerRecordTime = parseInt(localStorage.getItem("playerRecordTime")) || null;
+  const internalRecordedRecord = 21461453
+  
+  if (playerRecord < internalRecordedRecord) {
+    playerRecord = internalRecordedRecord
+  };
 
   const sheet = document.styleSheets[0];
   const experienceId = "7436755782";
@@ -119,7 +124,10 @@ window.addEventListener('load', async function () {
       14, 0, 0
     ));
 
-    if (target <= now) target.setUTCDate(target.getUTCDate() + 7);
+    if (target <= now) {
+      document.getElementById("timerTitle").innerHTML = "Game updated."
+      return
+    };
 
     const diff = target - now;
     const totalSeconds = Math.floor(diff / 1000);
@@ -144,3 +152,4 @@ window.addEventListener('load', async function () {
   setInterval(updateCountdown, 200);
   updateCountdown();
 });
+
